@@ -1,6 +1,12 @@
 pipeline
 {
-    agent any
+    agent 
+    {
+        node
+        {
+            label 'test_docker'
+        }
+    }
     stages
     {
         stage('build-step')
