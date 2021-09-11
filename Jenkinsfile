@@ -8,7 +8,7 @@ pipeline
             steps
             {
                 echo 'code build successfully'
-                sh 'sleep 5'
+                sh '$x'
             }
         }
         stage('test-code')
@@ -16,7 +16,7 @@ pipeline
             steps
             {
                 echo 'code tested successfully'
-                sh 'sleep 5'
+                sh '$y'
             }
         }
         stage('deploy-code')
@@ -24,7 +24,7 @@ pipeline
             steps
             {
                 echo 'code deployed successfully'
-                sh 'sleep 5'
+                sh '$z'
             }     
         }
     }
