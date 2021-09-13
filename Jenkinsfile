@@ -15,7 +15,7 @@ pipeline
             {
                 echo 'code build successfully'
                 sh '$x'
-                git branch: 'main', url: 'https://github.com/harneetsingh11/demo-git.git'
+                git branch: 'master', url: 'https://github.com/vimallinuxworld13/simple-java-maven-app.git'
             }
         }
         stage('test-code')
