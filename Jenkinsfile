@@ -1,16 +1,14 @@
 pipeline
 {
-    agent 
-    {
-        node
-        {
-            label 'test_docker'
-        }
-    }
+    agent none
     stages
     {
         stage('build-step')
         {
+            agent
+            {
+                label 'build_pac'
+            }
             steps
             {
                 echo 'code build successfully'
