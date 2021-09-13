@@ -17,6 +17,7 @@ pipeline
                 sh '$x'
                 git branch: 'master', url: 'https://github.com/vimallinuxworld13/simple-java-maven-app.git'
                 sh 'mvn package'
+                archive 'target/*.jar'
             }
         }
         stage('test-code')
