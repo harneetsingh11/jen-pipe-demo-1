@@ -14,6 +14,8 @@ pipeline
                 echo 'code build successfully'
                 sh '$x'
                 git branch: 'master', url: 'https://github.com/vimallinuxworld13/simple-java-maven-app.git'
+                sh 'mvn package'
+                archive 'target/*.jar'
                
             }
         }
@@ -27,8 +29,7 @@ pipeline
             {
                 echo 'code tested successfully'
                 sh '$y'
-                sh 'mvn package'
-                archive 'target/*.jar'
+                
             }
         }
         stage('deploy-code')
