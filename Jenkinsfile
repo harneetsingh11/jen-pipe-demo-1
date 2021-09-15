@@ -46,13 +46,13 @@ pipeline
                 echo 'code deployed successfully'
                 sh '$z'
                 unstash 'package'
-                sh 'java -jar target/*.jar'
+                sh 'java -jar *.jar'
             }
             post 
             {
                 always
                 {
-                    junit 'target/surefire-reports/*.xml'
+                    junit 'surefire-reports/*.xml'
                 }
             }
         }
