@@ -30,7 +30,7 @@ pipeline
                 unstash 'code'
                 sh 'mvn package'
                 archive 'target/*.jar'
-                stash includes: 'target/*.jar', name: 'package'
+                stash includes: '*', name: 'package'
             }
         }
         stage('test_code')
@@ -44,7 +44,7 @@ pipeline
                 echo 'code deployed successfully'
                 sh '$z'
                 unstash 'package'
-                sh 'java -jar *jar'
+                sh 'java -jar target/*.jar'
             }
         }
     }
