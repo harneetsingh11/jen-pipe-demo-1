@@ -3,7 +3,7 @@ pipeline
     agent none
     stages
     {
-        stage('build-step')
+        stage('get_code')
         {
             agent
             {
@@ -14,13 +14,10 @@ pipeline
                 echo 'code build successfully'
                 sh '$x'
                 git branch: 'master', url: 'https://github.com/vimallinuxworld13/simple-java-maven-app.git'
-                sh 'mvn package'
-                sh 'java -jar target/*jar'
-                archive 'target/*.jar'
-               
+                stash includes: '*', name: 'code'
             }
         }
-        stage('test-code')
+        stage('build_code')
         {
             agent
             {
@@ -30,10 +27,13 @@ pipeline
             {
                 echo 'code tested successfully'
                 sh '$y'
-                
+                unstash 'code'
+                sh 'mvn package'
+                archive 'target/*.jar'
+                stash includes: 'target/*.jar', name: 'package'
             }
         }
-        stage('deploy-code')
+        stage('test_code')
         {
             agent
             {
@@ -43,6 +43,8 @@ pipeline
             {
                 echo 'code deployed successfully'
                 sh '$z'
+                unstash 'package'
+                sh 'java -jar target/*jar'
             }     
         }
     }
