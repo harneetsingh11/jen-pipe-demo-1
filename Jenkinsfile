@@ -30,7 +30,7 @@ pipeline
                 unstash 'code'
                 sh 'mvn package'
                 archive 'target/*.jar'
-                stash includes: 'target/*.jar', name: 'package'
+                stash includes: '*.jar', name: 'package'
             }
         }
         stage('test_code')
