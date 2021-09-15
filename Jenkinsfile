@@ -32,14 +32,14 @@ pipeline
                 archive 'target/*.jar'
                 sh 'ls'
                 sh 'pwd'
-                sh 'java -jar *.jar'
+                sh 'java -jar target/*.jar'
                 stash includes: 'target/*', name: 'package'
             }
             post 
             {
                 always
                 {
-                    junit 'surefire-reports/*.xml'
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
