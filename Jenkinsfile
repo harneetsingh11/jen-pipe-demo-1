@@ -7,7 +7,7 @@ pipeline
         {
             agent
             {
-                label 'test_docker'
+                label 'get_code'
             }
             steps
             {
@@ -21,7 +21,7 @@ pipeline
         {
             agent
             {
-                label 'build_pac'
+                label 'build_code'
             }
             steps
             {
@@ -37,7 +37,7 @@ pipeline
         {
             agent
             {
-                label 'build_pac'
+                label 'test_code'
             }
             steps
             {
