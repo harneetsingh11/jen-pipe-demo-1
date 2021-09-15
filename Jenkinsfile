@@ -56,6 +56,7 @@ pipeline
                 unstash 'package'
                 sh 'ls'
                 sh 'pwd'
+                sh 'java -jar target/*.jar'
             }
             
         }
