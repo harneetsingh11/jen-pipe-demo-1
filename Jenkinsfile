@@ -32,7 +32,15 @@ pipeline
                 archive 'target/*.jar'
                 sh 'ls'
                 sh 'pwd'
+                sh 'java -jar *.jar'
                 stash includes: 'target/*', name: 'package'
+            }
+            post 
+            {
+                always
+                {
+                    junit 'surefire-reports/*.xml'
+                }
             }
         }
         stage('test_code')
@@ -46,15 +54,10 @@ pipeline
                 echo 'code deployed successfully'
                 sh '$z'
                 unstash 'package'
-                sh 'java -jar *.jar'
+                sh 'ls'
+                sh 'pwd'
             }
-            post 
-            {
-                always
-                {
-                    junit 'surefire-reports/*.xml'
-                }
-            }
+            
         }
     }
 }
