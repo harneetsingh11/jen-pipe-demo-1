@@ -44,7 +44,7 @@ pipeline
                 echo 'code deployed successfully'
                 sh '$z'
                 unstash 'package'
-                sh 'java -jar *jar'
+                sh 'java -jar target/*jar'
             }
              post {
                 always {
