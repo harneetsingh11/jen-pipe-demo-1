@@ -30,7 +30,7 @@ pipeline
                 unstash 'code'
                 sh 'mvn package'
                 archive 'target/*.jar'
-                stash includes: 'target/', name: 'package'
+                stash includes: 'target/*.jar', name: 'package'
             }
         }
         stage('test_code')
@@ -44,12 +44,7 @@ pipeline
                 echo 'code deployed successfully'
                 sh '$z'
                 unstash 'package'
-                sh 'java -jar target/*jar'
-            }
-             post {
-                always {
-                    junit 'target/surefire-reports/*.xml'
-                }
+                sh 'java -jar *jar'
             }
         }
     }
