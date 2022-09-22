@@ -45,9 +45,12 @@
 name: 'Terraform'
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deploy Environment (valid values include: dev, prod, sandbox, stage, test).'
+        required: true
+        default: sandbox
 
 permissions:
   contents: read
